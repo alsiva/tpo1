@@ -1,32 +1,85 @@
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class MainTest {
 
-    int[] array = {0, 34, 24, 86, 78, 12, 43, 100, 59, 34};
     @Test
     public void TestFirst() {
-        var result = new BucketSorter().result(array)[0];
-        assertEquals(0, result);
+        Graph g = new Graph(4);
+
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(2, 0);
+        g.addEdge(2, 3);
+        g.addEdge(3, 3);
+
+        Integer result = g.main(g, 2).get(3);
+        if (result == null) {
+            fail("You should use vertex number that exists");
+        } else {
+            assertEquals(Optional.of(3), Optional.of(result));
+        }
     }
 
     @Test
     public void TestFifth() {
-        var result = new BucketSorter().result(array)[4];
-        assertEquals(34, result);
+        Graph g = new Graph(4);
 
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(2, 0);
+        g.addEdge(2, 3);
+        g.addEdge(3, 3);
+
+        Integer result = g.main(g, 2).get(0);
+        if (result == null) {
+            fail("You should use vertex number that exists");
+        } else {
+            assertEquals(Optional.of(2), Optional.of(result));
+        }
     }
 
     @Test
     public void TestNingth() {
-        var result = new BucketSorter().result(array)[8];
-        assertEquals(86, result);
+        Graph g = new Graph(4);
+
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(2, 0);
+        g.addEdge(2, 3);
+        g.addEdge(3, 3);
+
+        Integer result = g.main(g, 2).get(1);
+        if (result == null) {
+            fail("You should use vertex number that exists");
+        } else {
+            assertEquals(Optional.of(0), Optional.of(result));
+        }
     }
 
     @Test
     public void TestTenth() {
-        var result = new BucketSorter().result(array)[9];
-        assertEquals(100, result);
+        Graph g = new Graph(4);
+
+        g.addEdge(0, 1);
+        g.addEdge(0, 2);
+        g.addEdge(1, 2);
+        g.addEdge(2, 0);
+        g.addEdge(2, 3);
+        g.addEdge(3, 3);
+
+        Integer result = g.main(g, 2).get(2);
+        if (result == null) {
+            fail("You should use vertex number that exists");
+        } else {
+            assertEquals(Optional.of(1), Optional.of(result));
+        }
     }
 }
